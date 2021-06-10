@@ -21,7 +21,7 @@ const PhotoGallery = ({ photos }) => {
           <Col key={index} className='post-gallery'>
             <div className='post-gallery-item'>
               <img
-                src={`${process.env.PUBLIC_URL}/assets/images/posts/${photos[index]}`}
+                src={`https://iamanhrecipeapp.s3.amazonaws.com/${photos[index]}`}
                 className='img-fluid gallery-img'
                 alt='random'
                 onClick={() => handleImageClick(index)}
@@ -32,11 +32,11 @@ const PhotoGallery = ({ photos }) => {
       </Row>
       {isOpen && (
         <Lightbox
-          mainSrc={`${process.env.PUBLIC_URL}/assets/images/posts/${photos[photoIndex]}`}
-          nextSrc={`${process.env.PUBLIC_URL}/assets/images/posts/${
+          mainSrc={`https://iamanhrecipeapp.s3.amazonaws.com/${photos[photoIndex]}`}
+          nextSrc={`https://iamanhrecipeapp.s3.amazonaws.com/${
             photos[(photoIndex + 1) % photos.length]
           }`}
-          prevSrc={`${process.env.PUBLIC_URL}/assets/images/posts/${
+          prevSrc={`https://iamanhrecipeapp.s3.amazonaws.com/${
             photos[(photoIndex + photos.length - 1) % photos.length]
           }`}
           onCloseRequest={() => setIsOpen(false)}

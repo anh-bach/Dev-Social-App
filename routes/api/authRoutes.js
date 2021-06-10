@@ -3,6 +3,13 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const AWS = require('aws-sdk');
+const fs = require('fs');
+
+AWS.config.update({ region: 'us-east-1' });
+const S3_BUCKET = config.get('S3_BUCKET');
+const AWS_SECRET_ACCESS_KEY = config.get('AWS_SECRET_ACCESS_KEY');
+const AWS_ACCESS_KEY_ID = config.get('AWS_ACCESS_KEY_ID');
 
 const auth = require('../../middlewares/auth');
 const User = require('../../models/User');
@@ -37,6 +44,22 @@ router.put('/', auth, uploadAvatar, async (req, res) => {
 
     if (req.file) {
       req.body.avatar = req.file.filename;
+
+      const readStream = fs.createReadStream(req.file.path);
+      AWS.config.update({
+        accessKeyId: AWS_ACCESS_KEY_ID,
+        secretAccessKey: AWS_SECRET_ACCESS_KEY,
+      });
+      const s3 = new AWS.S3();
+      const params = {
+        Bucket: S3_BUCKET,
+        Key: req.file.filename,
+        Body: readStream,
+      };
+      s3.upload(params, (error, data) => {
+        console.log(error, data);
+        readStream.destroy();
+      });
     }
 
     const user = await User.findByIdAndUpdate(

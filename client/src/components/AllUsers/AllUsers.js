@@ -15,7 +15,7 @@ const AllUsers = ({ profiles }) => {
                 <Col sm={3} className='user-avatar'>
                   <div
                     style={{
-                      backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/posts/${profile.user.avatar})`,
+                      backgroundImage: `url(https://iamanhrecipeapp.s3.amazonaws.com/${profile.user.avatar})`,
                       backgroundPosition: 'center',
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',

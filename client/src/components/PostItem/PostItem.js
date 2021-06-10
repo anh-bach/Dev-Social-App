@@ -38,7 +38,7 @@ const PostItem = ({
           <Link to={`/profile/${user}`}>
             <div
               style={{
-                backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/posts/${avatar})`,
+                backgroundImage: `url(https://iamanhrecipeapp.s3.amazonaws.com/${avatar})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',

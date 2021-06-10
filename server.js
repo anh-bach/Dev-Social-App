@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const connectDB = require('./config/db');
+const aws = require('aws-sdk');
+aws.config.region = 'us-east-1';
 
 const app = express();
 
@@ -23,7 +25,7 @@ app.use('/api/posts', require('./routes/api/postRoutes'));
 if (process.env.NODE_ENV === 'production') {
   //serve up client/build
   app.use(express.static('client/build'));
-  app.use(express.static('client/public'));
+
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });

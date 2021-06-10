@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { addComment } from '../../redux/actions/post';
@@ -19,7 +18,7 @@ const CreateComment = ({ postId }) => {
       <Col xs={1} className='create-comment-avatar'>
         <div
           style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/posts/${avatar})`,
+            backgroundImage: `url(https://iamanhrecipeapp.s3.amazonaws.com/${avatar})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
@@ -37,6 +36,7 @@ const CreateComment = ({ postId }) => {
           })}
           onSubmit={async (values, { setSubmitting, resetForm }) => {
             //create a comment
+            console.log('from comment', values);
             await dispatch(addComment(postId, values));
 
             setSubmitting(false);

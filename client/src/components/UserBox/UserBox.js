@@ -26,12 +26,12 @@ const UserBox = ({ user = {}, profile = {}, posts = [] }) => {
   return (
     <Card className='shadow-sm p-3 mb-3 user-box'>
       <Link to={`/profile/${_id}`}>
-        <Card className="user-box-section profile-card">
+        <Card className='user-box-section profile-card'>
           <Row>
             <Col sm={3}>
               <div
                 style={{
-                  backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/posts/${avatar})`,
+                  backgroundImage: `url(https://iamanhrecipeapp.s3.amazonaws.com/${avatar})`,
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
@@ -39,8 +39,7 @@ const UserBox = ({ user = {}, profile = {}, posts = [] }) => {
                   height: '60px',
                   borderRadius: '50%',
                 }}
-              >
-              </div>
+              ></div>
             </Col>
             <Col sm={9}>
               <Card.Title>{name}</Card.Title>
@@ -50,7 +49,7 @@ const UserBox = ({ user = {}, profile = {}, posts = [] }) => {
         </Card>
       </Link>
       <Link to='/setting'>
-        <div className="user-box-section profile-progress">
+        <div className='user-box-section profile-progress'>
           <Card.Text>
             Profile Ready:{' '}
             <span>
@@ -66,8 +65,8 @@ const UserBox = ({ user = {}, profile = {}, posts = [] }) => {
                 experience,
                 education,
               ])}
-          %
-        </span>{' '}
+              %
+            </span>{' '}
           </Card.Text>
           <ProgressBar
             variant='success'
@@ -89,8 +88,10 @@ const UserBox = ({ user = {}, profile = {}, posts = [] }) => {
       </Link>
       {/* <hr /> */}
       <Link to={`/profile/${_id}`}>
-        <div className="user-box-section">
-          <Card.Text>Total Posts: <span>{posts.length}</span>{' '}</Card.Text>
+        <div className='user-box-section'>
+          <Card.Text>
+            Total Posts: <span>{posts.length}</span>{' '}
+          </Card.Text>
         </div>
       </Link>
     </Card>

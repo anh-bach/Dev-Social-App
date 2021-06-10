@@ -1,6 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
+const config = require('config');
+const AWS = require('aws-sdk');
+const fs = require('fs');
+AWS.config.update({ region: 'us-east-1' });
+const S3_BUCKET = config.get('S3_BUCKET');
+const AWS_SECRET_ACCESS_KEY = config.get('AWS_SECRET_ACCESS_KEY');
+const AWS_ACCESS_KEY_ID = config.get('AWS_ACCESS_KEY_ID');
+AWS.config.update({
+  accessKeyId: AWS_ACCESS_KEY_ID,
+  secretAccessKey: AWS_SECRET_ACCESS_KEY,
+});
 
 const Post = require('../../models/Post');
 const User = require('../../models/User');
@@ -30,6 +41,21 @@ router.post('/', [auth, uploadPostImages], async (req, res) => {
     //handle upload file
     if (req.files) {
       req.files.map((photo) => newPost.photos.push(photo.filename));
+
+      req.files.map((file) => {
+        const readStream = fs.createReadStream(file.path);
+
+        const s3 = new AWS.S3();
+        const params = {
+          Bucket: S3_BUCKET,
+          Key: file.filename,
+          Body: readStream,
+        };
+        s3.upload(params, (error, data) => {
+          console.log(error, data);
+          readStream.destroy();
+        });
+      });
     }
 
     const post = new Post(newPost);
