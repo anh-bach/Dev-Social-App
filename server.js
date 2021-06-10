@@ -5,6 +5,7 @@ const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 
+//init the server
 const app = express();
 
 //Connect to Database
