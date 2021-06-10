@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const { check, validationResult } = require('express-validator');
-const config = require('config');
 const AWS = require('aws-sdk');
 const fs = require('fs');
 
 AWS.config.update({ region: 'us-east-1' });
-const S3_BUCKET = config.get('S3_BUCKET');
-const AWS_SECRET_ACCESS_KEY = config.get('AWS_SECRET_ACCESS_KEY');
-const AWS_ACCESS_KEY_ID = config.get('AWS_ACCESS_KEY_ID');
+const S3_BUCKET = process.env.S3_BUCKET;
+const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
@@ -346,11 +345,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 router.get('/github/:username', async (req, res) => {
   try {
     const options = {
-      url: `https://api.github.com/users/${
-        req.params.username
-      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-        'githubClientId'
-      )}&client_secret=${config.get('githubSecret')}`,
+      url: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${process.env.GITHUBCLIENTID}&client_secret=${process.env.GITHUBSECRET}`,
       method: 'GET',
       headers: { 'user-agent': 'node.js' },
     };

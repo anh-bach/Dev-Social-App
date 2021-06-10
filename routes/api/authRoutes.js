@@ -2,14 +2,13 @@ const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const AWS = require('aws-sdk');
 const fs = require('fs');
 
 AWS.config.update({ region: 'us-east-1' });
-const S3_BUCKET = config.get('S3_BUCKET');
-const AWS_SECRET_ACCESS_KEY = config.get('AWS_SECRET_ACCESS_KEY');
-const AWS_ACCESS_KEY_ID = config.get('AWS_ACCESS_KEY_ID');
+const S3_BUCKET = process.env.S3_BUCKET;
+const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 
 const auth = require('../../middlewares/auth');
 const User = require('../../models/User');
@@ -132,7 +131,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.JWTSECRET,
         { expiresIn: 360000 },
         (error, token) => {
           if (error) throw error;

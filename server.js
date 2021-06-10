@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const connectDB = require('./config/db');
-const aws = require('aws-sdk');
-aws.config.region = 'us-east-1';
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 
 const app = express();
 

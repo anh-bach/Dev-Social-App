@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
-const config = require('config');
 const AWS = require('aws-sdk');
 const fs = require('fs');
+//AWS
 AWS.config.update({ region: 'us-east-1' });
-const S3_BUCKET = config.get('S3_BUCKET');
-const AWS_SECRET_ACCESS_KEY = config.get('AWS_SECRET_ACCESS_KEY');
-const AWS_ACCESS_KEY_ID = config.get('AWS_ACCESS_KEY_ID');
+const S3_BUCKET = process.env.S3_BUCKET;
+const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 AWS.config.update({
   accessKeyId: AWS_ACCESS_KEY_ID,
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
