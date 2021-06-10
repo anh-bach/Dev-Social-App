@@ -55,10 +55,13 @@ router.put('/', auth, uploadAvatar, async (req, res) => {
         Key: req.file.filename,
         Body: readStream,
       };
-      s3.upload(params, (error, data) => {
-        console.log(error, data);
+      try {
+        await s3.upload(params).promise();
+
         readStream.destroy();
-      });
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     const user = await User.findByIdAndUpdate(

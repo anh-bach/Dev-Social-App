@@ -40,9 +40,9 @@ router.post('/', [auth, uploadPostImages], async (req, res) => {
 
     //handle upload file
     if (req.files) {
-      req.files.map((photo) => newPost.photos.push(photo.filename));
+      req.files.map((file) => newPost.photos.push(file.filename));
 
-      req.files.map((file) => {
+      for (const file of req.files) {
         const readStream = fs.createReadStream(file.path);
 
         const s3 = new AWS.S3();
@@ -51,11 +51,14 @@ router.post('/', [auth, uploadPostImages], async (req, res) => {
           Key: file.filename,
           Body: readStream,
         };
-        s3.upload(params, (error, data) => {
-          console.log(error, data);
+        try {
+          await s3.upload(params).promise();
+
           readStream.destroy();
-        });
-      });
+        } catch (error) {
+          console.log(error);
+        }
+      }
     }
 
     const post = new Post(newPost);

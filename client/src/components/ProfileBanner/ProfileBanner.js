@@ -11,8 +11,8 @@ const ProfileBanner = () => {
         style={{
           backgroundImage: `url(${
             profileById.avatar
-              ? `${process.env.PUBLIC_URL}/assets/images/posts/${profileById.avatar}`
-              : `${process.env.PUBLIC_URL}/assets/images/avatar.jpg`
+              ? `https://iamanhrecipeapp.s3.amazonaws.com/${profileById.avatar}`
+              : `https://iamanhrecipeapp.s3.amazonaws.com/avatar.png`
           }
             )`,
           backgroundPosition: 'center',

@@ -76,7 +76,7 @@ const AccountForm = () => {
         {user && user.avatar && (
           <Image
             width='80px'
-            src={`${process.env.PUBLIC_URL}/assets/images/posts/${user.avatar}`}
+            src={`https://iamanhrecipeapp.s3.amazonaws.com/${user.avatar}`}
           />
         )}
       </Form.Group>

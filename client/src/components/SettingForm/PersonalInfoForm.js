@@ -116,7 +116,7 @@ const PersonalInfoForm = () => {
         {profile && profile.avatar && (
           <Image
             width='80px'
-            src={`${process.env.PUBLIC_URL}/assets/images/posts/${profile.avatar}`}
+            src={`https://iamanhrecipeapp.s3.amazonaws.com/${profile.avatar}`}
           />
         )}
       </Form.Group>
