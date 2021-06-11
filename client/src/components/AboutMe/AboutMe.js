@@ -25,12 +25,12 @@ const AboutMe = ({
   const profile = useSelector((state) => state.profile);
 
   return (
-    <Card className='shadow-sm mt-3 p-3'>
+    <Card className='shadow-sm mt-3 p-3 about-me'>
       {auth.user._id === user._id ? (
         <Link to={`/setting`}>
-          <div className='d-flex justify-content-between'>
+          <div className='d-flex justify-content-between about-me-heading'>
             <h6>About Me</h6>
-            <i className='fas fa-edit'></i>
+            <i className='fas fa-pen'></i>
           </div>
         </Link>
       ) : (
@@ -39,10 +39,10 @@ const AboutMe = ({
 
       <Row className='mt-3 profile-bio'>
         <Col>
-          <small>{bio ? bio : 'Say Something About Yourself'}</small> {' - '}
-          <small className='status'>
+          <p>{bio ? bio : 'Say Something About Yourself'}</p> {' - '}
+          <span className='status'>
             {status ? status : 'What is your status?'}
-          </small>
+          </span>
         </Col>
       </Row>
 
@@ -52,19 +52,19 @@ const AboutMe = ({
           <small>{location ? location : 'Your Location'}</small>
         </Col>
       </Row>
-      <Row className='mt-3'>
+      <Row className='mt-3 key-items'>
         <Col>
           <i className='fas fa-briefcase'></i>{' '}
           <small>{website ? website : 'Your website'}</small>
         </Col>
       </Row>
-      <Row className='mt-3'>
+      <Row className='mt-3 key-items'>
         <Col>
           <i className='fas fa-building'></i>{' '}
           <small>{company ? website : 'Your company'}</small>
         </Col>
       </Row>
-      <Row className='mt-3'>
+      <Row className='mt-3 key-items'>
         <Col>
           <i className='fab fa-github'></i>{' '}
           {githubusername ? (
@@ -82,7 +82,7 @@ const AboutMe = ({
           )}
         </Col>
       </Row>
-      <Row className='mt-3'>
+      <Row className='mt-3 key-items'>
         <Col>
           <i className='fas fa-calendar-day'></i>{' '}
           <small>
@@ -97,9 +97,12 @@ const AboutMe = ({
             <small>Enter Your Skills</small>
           </Col>
         ) : (
-          <Col>
+          <Col className='skills-badge'>
             {skills.map((skill, i) => (
-              <span key={i} className='badge bg-primary text-white mr-1'>
+              <span
+                key={i}
+                className='badge bg-primary text-white mr-1 skills-badge-item'
+              >
                 {skill}
               </span>
             ))}
@@ -108,14 +111,9 @@ const AboutMe = ({
       </Row>
       {profile.repos.length > 0 && (
         <div className='repos-list'>
-          <Row className='my-3'>
-            <Col>
-              <div className='border-top w-100'></div>
-            </Col>
-          </Row>
           <h6>Repos List</h6>
           {profile.repos.map((repo) => (
-            <Row key={repo.id}>
+            <Row key={repo.id} className='repo-list-item'>
               <Col>
                 <a href={repo.html_url} target='_blank' rel='noreferrer'>
                   <small>
