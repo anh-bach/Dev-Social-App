@@ -6,8 +6,6 @@ import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../redux/actions/auth';
-import { clearProfile } from '../../redux/actions/profile';
-import { clearPosts } from '../../redux/actions/post';
 
 const CustomNavbar = () => {
   const dispatch = useDispatch();
@@ -16,15 +14,15 @@ const CustomNavbar = () => {
 
   return (
     <Navbar
-      className='shadow'
+      className='shadow nav-bar-top'
       collapseOnSelect
       bg='light'
-      expand='sm'
+      expand='lg'
       fixed='top'
     >
       <Container>
         <LinkContainer to='/home'>
-          <Navbar.Brand>DevNet</Navbar.Brand>
+          <Navbar.Brand className='logo'>DevNet</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>

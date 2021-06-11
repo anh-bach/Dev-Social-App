@@ -36,23 +36,17 @@ const AboutMe = ({
       ) : (
         <h6>About Me</h6>
       )}
-      <Row className='mt-3'>
-        <Col>
-          <div className='border-top w-100'></div>
-        </Col>
-      </Row>
-      <Row className='mt-3'>
+
+      <Row className='mt-3 profile-bio'>
         <Col>
           <small>{bio ? bio : 'Say Something About Yourself'}</small> {' - '}
-          <small>{status ? status : 'What is your status?'}</small>
+          <small className='status'>
+            {status ? status : 'What is your status?'}
+          </small>
         </Col>
       </Row>
-      <Row className='mt-3'>
-        <Col>
-          <div className='border-top w-100'></div>
-        </Col>
-      </Row>
-      <Row className='mt-3'>
+
+      <Row className='mt-3 key-items'>
         <Col>
           <i className='fas fa-map-marker-alt'></i>{' '}
           <small>{location ? location : 'Your Location'}</small>
@@ -96,12 +90,8 @@ const AboutMe = ({
           </small>
         </Col>
       </Row>
-      <Row className='mt-3'>
-        <Col>
-          <div className='border-top w-100'></div>
-        </Col>
-      </Row>
-      <Row className='mt-3'>
+
+      <Row className='mt-3 skills-list'>
         {skills.length === 0 ? (
           <Col>
             <small>Enter Your Skills</small>
@@ -117,7 +107,7 @@ const AboutMe = ({
         )}
       </Row>
       {profile.repos.length > 0 && (
-        <Fragment>
+        <div className='repos-list'>
           <Row className='my-3'>
             <Col>
               <div className='border-top w-100'></div>
@@ -135,7 +125,7 @@ const AboutMe = ({
               </Col>
             </Row>
           ))}
-        </Fragment>
+        </div>
       )}
     </Card>
   );

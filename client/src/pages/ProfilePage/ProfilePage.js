@@ -7,7 +7,10 @@ import Col from 'react-bootstrap/Col';
 import Spinner from '../../components/Spinner/Spinner';
 import CustomNavbar from '../../components/Navbar/Navbar';
 import ProfileBanner from '../../components/ProfileBanner/ProfileBanner';
-import { getUserProfileById, clearUserProfileById } from '../../redux/actions/profile';
+import {
+  getUserProfileById,
+  clearUserProfileById,
+} from '../../redux/actions/profile';
 import UserBox from '../../components/UserBox/UserBox';
 import CreatePostBox from '../../components/CreatPostBox/CreatePostBox';
 import Posts from '../../components/Posts/Posts';
@@ -47,7 +50,7 @@ const ProfilePage = () => {
           <span>{profileById.status}</span>
         </div>
         <Row>
-          <Col xs={4}>
+          <Col md={12} lg={4}>
             <UserBox
               user={profileById.user}
               profile={profileById}
@@ -55,7 +58,7 @@ const ProfilePage = () => {
             />
             <AboutMe {...profileById} />
           </Col>
-          <Col xs={8}>
+          <Col md={12} lg={8}>
             {auth.user._id === userId && <CreatePostBox />}
             <Posts posts={currentUserPosts} />
           </Col>
