@@ -8,7 +8,9 @@ const HeroBanner = ({ imageSrc, quote, name, title }) => {
       </div>
       <div className='hero-banner-content'>
         <div className='hero-banner-quote'>
-          <span>"</span>
+          <span>
+            <i className='fas fa-quote-left'></i>
+          </span>
           {quote}
         </div>
         <div className='hero-banner-name'>

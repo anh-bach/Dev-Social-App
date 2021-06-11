@@ -4,7 +4,7 @@
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     background-color: rgba(16, 102, 193, 0.8);
     height: 100%;
     width: 100%;
@@ -14,9 +14,15 @@
   }
 
   .hero-banner-bg {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 100vh;
 
     .hero-banner-bg-img {
@@ -41,9 +47,10 @@
 
       span {
         display: block;
-        font-size: 5rem;
+        font-size: 2rem;
         line-height: 0.5rem;
         padding: 1rem 0;
+        color: rgba(185, 219, 255, 0.5);
       }
     }
 
