@@ -14,4 +14,12 @@ This is a small I collaborated with 3 other students to create a simple web appl
 - MongoDB.
 - JWT for authentication and authorization.
 
+## Deployment
+
+This app is deployed on Heroku. Please check it out at:
+
+```
+https://devnet-bc.herokuapp.com/
+```
+
 This simple app is not totally responsive yet.
